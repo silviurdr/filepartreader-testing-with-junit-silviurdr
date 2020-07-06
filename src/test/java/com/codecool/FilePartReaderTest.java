@@ -3,6 +3,7 @@ package com.codecool;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -21,25 +22,31 @@ public class FilePartReaderTest {
         fpr = new FilePartReader();
     }
 
-    @DisplayName("Path argument is a String?")
-    @Test
-    public void testIsPathArgumentString() {
-        fpr.setup("something", 3, 4);
-        Assert.assertTrue(fpr.getFilePath() instanceof String);
-    }
 
-    @DisplayName("fromLine argument is an Integer?")
-    @Test
-    public void testIsFromLineArgumentInteger() {
-        fpr.setup("something", 5, 6);
-        Assert.assertTrue(fpr.getFromLine() instanceof Integer);
-    }
+    @Nested
+    @DisplayName("Testing if the arguments are of the correct type")
+    class Arguments {
 
-    @DisplayName("toLine argument is an Integer?")
-    @Test
-    public void testIsToLineArgumentInteger() {
-        fpr.setup("something", 3, 6);
-        Assert.assertTrue(fpr.getToLine() instanceof Integer);
+        @DisplayName("Path argument is a String?")
+        @Test
+        public void testIsPathArgumentString() {
+            fpr.setup("something", 3, 4);
+            Assert.assertTrue(fpr.getFilePath() instanceof String);
+        }
+
+        @DisplayName("fromLine argument is an Integer?")
+        @Test
+        public void testIsFromLineArgumentInteger() {
+            fpr.setup("something", 5, 6);
+            Assert.assertTrue(fpr.getFromLine() instanceof Integer);
+        }
+
+        @DisplayName("toLine argument is an Integer?")
+        @Test
+        public void testIsToLineArgumentInteger() {
+            fpr.setup("something", 3, 6);
+            Assert.assertTrue(fpr.getToLine() instanceof Integer);
+        }
     }
 
     @DisplayName("Test if toLine argument is smaller than fromLine argument")
@@ -62,8 +69,8 @@ public class FilePartReaderTest {
         String actual = fpr.read("/home/silviu/Documents/Codecool/oop_module/SI5/filepartreader-testing-with-j" +
                 "unit-silviurdr/src/main/java/com/codecool/resources/example.txt");
         String expected = "Where are we going and\n" +
-                "There is so much water here\n" +
-                "You can fly over that dog if he doesn't bark\n" +
+                "There is a high level of so much wow water in the noon here\n" +
+                "You can flyog over that dog if he doesn't barkog\n" +
                 "The glass was full earlier now it's only foolish\n";
         assertEquals(expected, actual);
     }
@@ -75,7 +82,7 @@ public class FilePartReaderTest {
                 "-silviurdr/src/main/java/com/codecool/resources/example.txt");
         String actual = fpr.readLines("/home/silviu/Documents/Codecool/oop_module/SI5/filepartreader-testing-with-junit" +
                 "-silviurdr/src/main/java/com/codecool/resources/example.txt", 1, 2);
-        String expected = "Where are we going and\nThere is so much water here";
+        String expected = "Where are we going and\nThere is a high level of so much wow water in the noon here";
         assertEquals(expected, actual);
     }
 
