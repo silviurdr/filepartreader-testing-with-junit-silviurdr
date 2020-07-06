@@ -16,6 +16,8 @@ public class FilePartReaderTest {
 
 
     public FilePartReader fpr;
+    final String PATH = "/home/silviu/Documents/Codecool/oop_module/SI5/filepartreader-testing-with-junit" +
+            "-silviurdr/src/main/java/com/codecool/resources/example.txt";
 
     @BeforeEach
     public void before() {
@@ -64,10 +66,8 @@ public class FilePartReaderTest {
     @DisplayName("Is the reader opening the file and showing its content as a String")
     @Test
     public void testFileRead() throws IOException {
-        File file = new File("/home/silviu/Documents/Codecool/oop_module/SI5/filepartreader-testing-with-junit-" +
-                "silviurdr/src/main/java/com/codecool/resources/example.txt");
-        String actual = fpr.read("/home/silviu/Documents/Codecool/oop_module/SI5/filepartreader-testing-with-j" +
-                "unit-silviurdr/src/main/java/com/codecool/resources/example.txt");
+
+        String actual = fpr.read(PATH);
         String expected = "Where are we going and\n" +
                 "There is a high level of so much wow water in the noon here\n" +
                 "You can flyog over that dog if he doesn't barkog\n" +
@@ -78,10 +78,8 @@ public class FilePartReaderTest {
     @DisplayName("Is the reader returned a string with only the requested lines")
     @Test
     public void testFileReadLines() throws IOException {
-        File file = new File("/home/silviu/Documents/Codecool/oop_module/SI5/filepartreader-testing-with-junit" +
-                "-silviurdr/src/main/java/com/codecool/resources/example.txt");
-        String actual = fpr.readLines("/home/silviu/Documents/Codecool/oop_module/SI5/filepartreader-testing-with-junit" +
-                "-silviurdr/src/main/java/com/codecool/resources/example.txt", 1, 2);
+
+        String actual = fpr.readLines(PATH, 1, 2);
         String expected = "Where are we going and\nThere is a high level of so much wow water in the noon here";
         assertEquals(expected, actual);
     }
